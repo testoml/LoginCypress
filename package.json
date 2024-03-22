@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:open": "cypress open --browser chrome --e2e",
+    "cypress:runDefault": "cypress run --spec cypress/e2e/*.cy.js",
+    "cypress:chrome": "cypress run --browser chrome --spec cypress/e2e/*.cy.js",
+    "cypress:edge": "cypress run --browser edge --spec cypress/e2e/*.cy.js",
+    "cypress:runChromeHeadless": "cypress run --headless --browser chrome --spec cypress/e2e/*.cy.js --record --key 4bc50df7-5eee-4147-8eb3-ccea611c8d4b"
   },
   "author": "",
   "license": "ISC",

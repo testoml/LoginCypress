@@ -125,3 +125,72 @@ Configuration:
 
 Cypress allows you to configure various options using the cypress.json file.
 Apart from screenshotsFolder and videosFolder, you can configure options such as baseUrl, viewportWidth, viewportHeight, etc.
+
+### Login automation
+
+After the installation of cypress go to login.spec.js and follow those steps
+
+#### First aproach 
+For the automation we can use this example [Page](https://practicetestautomation.com/practice-test-login/). The page mention 3 posible test cases:
+
+Write your test case using Cypress commands to interact with the login form and verify the login 
+
+##### Hook
+```
+describe('Login Test', () => {
+  beforeEach(() => {
+    // Runs before each test in this describe block
+  });
+
+  it('Positive LogIn test', () => {
+    //test case 1
+  });
+
+  it('Negative username test', () => {  
+    //test case 2
+  });
+
+  it('Negative password test', ()=>{
+    //test case 2
+  });
+});
+```
+
+After defining various possible scenarios for interacting with the login feature, we'll begin with a broad implementation. Subsequently, we'll explore how our project evolves and optimizes the automation process by incorporating new concepts.
+
+### FIRST IMPLEMENTATION 
+login.cy.js
+```
+//Hook
+  beforeEach(() => {
+    // Runs before each test in this describe block
+    cy.visit('https://practicetestautomation.com/practice-test-login/');
+  });
+
+  it('Positive LogIn test', () => {
+    //test case 1
+    cy.get('input[name="username"]').type('student');
+    cy.get('input[name="password"').type('Password123');
+    cy.get('#submit').click();
+    cy.url().should('contain', 'practicetestautomation.com/logged-in-successfully/');
+    cy.get('strong').should('have.text', 'Congratulations student. You successfully logged in!');
+    cy.contains('Log out').should('have.attr', 'href', 'https://practicetestautomation.com/practice-test-login/')
+  });
+
+  it(' Negative username test', () => {  
+    //test case 2
+    cy.get('input[name="username"]').type('incorrectUser');
+    cy.get('input[name="password"').type('Password123');
+    cy.get('#submit').click();
+    cy.get('#error').should('have.text', 'Your username is invalid!');
+  });
+
+  it('Negative password test', ()=>{
+    //test case 3
+    cy.get('input[name="username"]').type('student');
+    cy.get('input[name="password"').type('Password1234');
+    cy.get('#submit').click();
+    cy.get('#error').should('have.text', 'Your password is invalid!');
+  });
+});
+```
