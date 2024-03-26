@@ -10,7 +10,20 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+import loginPage from "../pageObjects/loginPage";
+Cypress.Commands.add('login', (username, password, validate = false) => {
+    const login = new loginPage();
+    if (username.length > 0) {
+        login.enterUsername(username);
+    }
+    if (password.length > 0) {
+        login.enterPassword(password);
+    }
+    login.clickButton();
+    if (validate) {
+        return login.elements.errorLabel();
+    }
+})
 //
 //
 // -- This is a child command --
