@@ -1,4 +1,4 @@
-# Login implementation with Cypress
+# Login automation with Cypress
 
 ## Introduction
 Automating login functionality is crucial for streamlining testing processes, improving test coverage, ensuring accuracy and reliability, enabling faster feedback loops, optimizing resource utilization, facilitating scalability, and supporting parallel testing efforts. By automating login tests, organizations can enhance the quality, efficiency, and agility of their software development lifecycle.
